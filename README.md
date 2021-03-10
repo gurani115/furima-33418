@@ -2,32 +2,35 @@
 
 ## usersテーブル
 
-| Column    | Type   | Options     |
-| --------- | ------ | ----------- |
-| nickname  | string | null: false |
-| email     | string | null: false |
-| password  | string | null: false |
-| name      | string | null: false |
-| last name | string | null: false |
-| birthday  | string | null: false |
+| Column              | Type   | Options                   |
+| ------------------- | ------ | ------------------------- |
+| nickname            | string | null: false               |
+| email               | string | null: false, unique: true |
+| encrypted_password  | string | null: false               |
+| first_name          | string | null: false               |
+| last_name           | string | null: false               |
+| kana_first_name     | string | null: false               |
+| kana_last_name      | string | null: false               |
+| birthday            | date   | null: false               |
 
 ### Association
 
-- has_many :exhibits
+- has_many :items
 - has_many :purchases
 
-## exhibitsテーブル
+## itemsテーブル
 
-| Column       | Type   | Options     |
-| ------------ | ------ | ----------- |
-| product name | text   | null: false |
-| explanation  | text   | null: false |
-| category     | string | null: false |
-| state        | string | null: false |
-| delivery     | string | null: false |
-| region       | string | null: false |
-| day          | string | null: false |
-| price        | string | null: false |
+| Column       | Type      | Options                        |
+| ------------ | --------- | ------------------------------ |
+| product_name | text      | null: false                    |
+| explanation  | text      | null: false                    |
+| category_id  | integer   | null: false                    |
+| state_id     | integer   | null: false                    |
+| delivery_id  | integer   | null: false                    |
+| region_id    | integer   | null: false                    |
+| day_id       | integer   | null: false                    |
+| price        | integer   | null: false                    |
+| user         | reference | null: false, foreign_key: true | 
 
 ### Association
 
@@ -38,11 +41,26 @@
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| comment | string     |                                |
 | user    | references | null: false, foreign_key: true |
 | exhibit | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :users
-- belongs_to :exhibits
+- belongs_to :items
+- has_one    :delivery
+
+## deliveryテーブル
+
+| Column      | Type    | Options     |
+| ----------- | ------- | ----------- |
+| postal_code | integer | null: false |
+| prefectures | string  | null: false |
+| town        | string  | null: false |
+| numbering   | integer | null: false |
+| building    | string  |             |
+| telephone   | integer | null: false |
+
+### Association
+
+- belongs_to :purchases
