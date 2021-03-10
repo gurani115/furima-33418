@@ -22,7 +22,7 @@
 
 | Column       | Type      | Options                        |
 | ------------ | --------- | ------------------------------ |
-| product_name | text      | null: false                    |
+| product_name | string    | null: false                    |
 | explanation  | text      | null: false                    |
 | category_id  | integer   | null: false                    |
 | state_id     | integer   | null: false                    |
@@ -34,8 +34,8 @@
 
 ### Association
 
-- belongs_to :users
-- has_many   :purchases
+- belongs_to :user
+- has_one    :purchases
 
 ## purchasesテーブル
 
@@ -46,21 +46,21 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 - has_one    :delivery
 
 ## deliveryテーブル
 
-| Column      | Type    | Options     |
-| ----------- | ------- | ----------- |
-| postal_code | integer | null: false |
-| prefectures | string  | null: false |
-| town        | string  | null: false |
-| numbering   | integer | null: false |
-| building    | string  |             |
-| telephone   | integer | null: false |
+| Column      | Type     | Options     |
+| ----------- | -------- | ----------- |
+| postal_code | string   | null: false |
+| region_id   | integer  | null: false |
+| town        | string   | null: false |
+| numbering   | string   | null: false |
+| building    | string   |             |
+| telephone   | string   | null: false |
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchase
