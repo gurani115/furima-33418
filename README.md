@@ -35,14 +35,14 @@
 ### Association
 
 - belongs_to :user
-- has_one    :purchases
+- has_one    :purchase
 
 ## purchasesテーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | user    | references | null: false, foreign_key: true |
-| exhibit | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -52,14 +52,15 @@
 
 ## deliveryテーブル
 
-| Column      | Type     | Options     |
-| ----------- | -------- | ----------- |
-| postal_code | string   | null: false |
-| region_id   | integer  | null: false |
-| town        | string   | null: false |
-| numbering   | string   | null: false |
-| building    | string   |             |
-| telephone   | string   | null: false |
+| Column      | Type      | Options                        |
+| ----------- | --------- | ------------------------------ |
+| postal_code | string    | null: false                    |
+| region_id   | integer   | null: false                    |
+| town        | string    | null: false                    |
+| numbering   | string    | null: false                    |
+| building    | string    |                                |
+| telephone   | string    | null: false                    |
+| purchase    | reference | null: false, foreign_key: true |
 
 ### Association
 
