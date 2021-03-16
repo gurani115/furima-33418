@@ -17,5 +17,5 @@ class User < ApplicationRecord
     validates :kana_first_name, format: {with: /\A[ァ-ヶー－]+\z/ }
   end 
   validates :password, length: {minimum: 6 }
-  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i}
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i}
 end
