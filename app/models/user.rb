@@ -13,10 +13,9 @@ class User < ApplicationRecord
     validates :birthday
     validates :last_name, format: {with: /\A[ぁ-んァ-ン一-龥々]+\z/}
     validates :first_name, format: {with: /\A[ぁ-んァ-ン一-龥々]+\z/}
-    validates :kana_last_name, format: {with:/\A[ァ-ヶー－]+\z/ }
+    validates :kana_last_name, format: {with: /\A[ァ-ヶー－]+\z/ }
     validates :kana_first_name, format: {with: /\A[ァ-ヶー－]+\z/ }
   end 
   validates :password, length: {minimum: 6 }
-  VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
-  validates :password, format: { with: VALID_PASSWORD_REGEX }
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i}
 end
