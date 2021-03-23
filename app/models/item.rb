@@ -12,12 +12,14 @@ class Item < ApplicationRecord
     validates :image
     validates :product_name
     validates :explanation
-    validates :category_id, numericality: { other_than: 1 } 
-    validates :state_id, numericality: { other_than: 1 } 
-    validates :delivery_id, numericality: { other_than: 1 } 
-    validates :region_id, numericality: { other_than: 1 } 
-    validates :day_id, numericality: { other_than: 1 } 
     validates :price
+  end
+  with_options presence: true, numericality: { other_than: 1 } do
+    validates :category_id 
+    validates :state_id
+    validates :delivery_id
+    validates :region_id
+    validates :day_id
   end
   validates :price, inclusion: { in: 300..9999999 }
   validates :price, format: {with: /\A[0-9]+\z/}
