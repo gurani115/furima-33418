@@ -1,9 +1,13 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  belongs_to :genre
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :state
+  belongs_to :delivery 
+  belongs_to :region 
+  belongs_to :day 
 
-  
   with_options presence: true do
     validates :image
     validates :product_name
