@@ -91,12 +91,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Priceは一覧にありません")
       end
       it 'priceが299円以下では出品できない' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Priceは一覧にありません")
       end
       it 'priceが10_000_000円以上では出品できない' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Priceは一覧にありません")
       end
