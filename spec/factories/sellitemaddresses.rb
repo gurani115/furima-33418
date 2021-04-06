@@ -6,7 +6,8 @@ FactoryBot.define do
     numbering     { '青山1-1-1' }
     building      { '大ビル' }
     telephone     { '09055556666' }
-    purchase_id   { 2 }
+    user_id       { 6 }
+    item_id       { 13 }
     token         { 'tok_abcdefghijk00000000000000000' }
   end
 end

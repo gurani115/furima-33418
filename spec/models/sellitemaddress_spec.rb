@@ -9,6 +9,10 @@ RSpec.describe SellitemAddress, type: :model do
       it '必須項目があれば購入できる' do
         expect(@sellitemaddress).to be_valid
       end
+      it '建物名がなくても購入できる' do
+        @sellitemaddress.building = ''
+        expect(@sellitemaddress).to be_valid
+      end
     end
     context '商品の購入ができないとき' do  
       it '郵便番号が空では購入できない' do
@@ -46,10 +50,25 @@ RSpec.describe SellitemAddress, type: :model do
         @sellitemaddress.valid?
         expect(@sellitemaddress.errors.full_messages).to include("Telephoneは不正な値です")
       end
-      it "トークンが空では登録できないこと" do
+      it '電話番号は12桁以上だと購入できない' do
+        @sellitemaddress.telephone = '123456789098'
+        @sellitemaddress.valid?
+        expect(@sellitemaddress.errors.full_messages).to include("Telephoneは不正な値です")
+      end
+      it 'トークンが空では登録できないこと' do
         @sellitemaddress.token = ''
         @sellitemaddress.valid?
         expect(@sellitemaddress.errors.full_messages).to include("Tokenを入力してください")
+      end
+      it 'ユーザーのIDが存在しないと購入できない' do
+        @sellitemaddress.user_id = ''
+        @sellitemaddress.valid?
+        expect(@sellitemaddress.errors.full_messages).to include("Userを入力してください")
+      end
+      it '商品のIDが存在しないと購入できない' do
+        @sellitemaddress.item_id = ''
+        @sellitemaddress.valid?
+        expect(@sellitemaddress.errors.full_messages).to include("Itemを入力してください")
       end
     end
   end  

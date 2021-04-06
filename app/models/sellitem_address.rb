@@ -1,6 +1,6 @@
 class SellitemAddress
   include ActiveModel::Model
-  attr_accessor  :postal_code, :region_id, :town, :numbering, :building, :telephone, :purchase_id, :user_id, :item_id, :token
+  attr_accessor  :postal_code, :region_id, :town, :numbering, :building, :telephone, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
@@ -8,6 +8,8 @@ class SellitemAddress
     validates :numbering
     validates :telephone, format: { with: /\A\d{11}\z/ }
     validates :token
+    validates :user_id
+    validates :item_id
   end
     validates :region_id, presence: true, numericality: { other_than: 1 }
   def save
