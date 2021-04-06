@@ -55,6 +55,16 @@ RSpec.describe SellitemAddress, type: :model do
         @sellitemaddress.valid?
         expect(@sellitemaddress.errors.full_messages).to include("Telephoneは不正な値です")
       end
+      it '電話番号は全角では購入できない' do
+        @sellitemaddress.telephone = '０１２３４５６７８９０１'
+        @sellitemaddress.valid?
+        expect(@sellitemaddress.errors.full_messages).to include("Telephoneは不正な値です")
+      end
+      it '電話番号は英字のみでは購入できない' do
+        @sellitemaddress.telephone = 'abcdefghijk'
+        @sellitemaddress.valid?
+        expect(@sellitemaddress.errors.full_messages).to include("Telephoneは不正な値です")
+      end
       it 'トークンが空では登録できないこと' do
         @sellitemaddress.token = ''
         @sellitemaddress.valid?

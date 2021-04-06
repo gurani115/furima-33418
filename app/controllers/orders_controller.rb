@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def set_order
-    if current_user == @item.user && @item.purchase.present?
+    if current_user == @item.user || @item.purchase.present?
       redirect_to root_path
     end
   end
