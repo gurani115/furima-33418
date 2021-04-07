@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe SellitemAddress, type: :model do
   before do
-    @sellitemaddress = FactoryBot.build(:SellitemAddress)
+    @user = FactoryBot.build(:user)
+    @item = FactoryBot.build(:item)
+    @sellitemaddress = FactoryBot.build(:SellitemAddress, user_id: @user, item_id: @item)
   end
   describe "商品購入機能" do
     context '商品の購入できるとき' do
